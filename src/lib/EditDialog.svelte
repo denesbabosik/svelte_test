@@ -13,25 +13,23 @@
         subtitle: string;
         created_at: string;
         updated_at: string;
-        journalists: [
+        journalists: 
             {
                 journalist: {
                     name: string;
                 };
-            }
-        ];
-        comments: [
+            }[];
+        comments:
             {
                 content: string;
                 likes: number;
                 user: {
                     username: string;
                 };
-            }
-        ];
+            }[];
     };
 
-    export let isOpen = false;
+
     export let article: Article;
 
     function saveChanges(
@@ -62,8 +60,7 @@
     }
 </script>
 
-{#if isOpen}
-    <div class="overlay">
+    <div>
         <div class="dialog">
             <h2>Edit Article</h2>
             <div class="labelled-input">
@@ -119,7 +116,7 @@
             </div>
         </div>
     </div>
-{/if}
+
 
 <style>
     .overlay {

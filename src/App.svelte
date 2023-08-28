@@ -18,22 +18,20 @@
     subtitle: string;
     created_at: string;
     updated_at: string;
-    journalists: [
+    journalists:
       {
         journalist: {
           name: string;
         };
-      }
-    ];
-    comments: [
+      }[];
+    comments:
       {
         content: string;
         likes: number;
         user: {
           username: string;
         };
-      }
-    ];
+      }[];
   };
 
   let name = "";
@@ -159,12 +157,14 @@
           <p>{comment.user.username}</p>
         {/each}
         <div class="action-btns">
-          <button on:click={() => openEditDialog(article)}>Edit</button>
+          <button on:click={() => openEditDialog({...article})}>Edit</button>
           <button on:click={() => delArticle(article.id)}>Delete</button>
         </div>
       </article>
     {/each}
   </section>
+
+  <button on:click={() => articles = [ ...articles, { id: 1,title: "a", subtitle: "a", content: "a", image: "a", short_content: "a", journalists: [], comments: [], created_at: "", updated_at: ""} ]}>demo</button>
 
   {#if articleToEdit !== null}
     <EditDialog

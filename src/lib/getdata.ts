@@ -31,10 +31,40 @@ export const getDataGraph = async (name: string) => {
     })
     const data = await response.json()
     console.log(data)
+    return []
     return data.data.journalist
 }
 
 export const getArticlesWithComments = async () => {
+    return Promise.resolve([
+        {
+            title: "alma",
+            subtitle: "korte",
+            content: "barack",
+            image: "barack",
+            shortContent: "barack",
+            journalists: [],
+            comments: []
+        },
+        {
+            title: "alma1",
+            subtitle: "korte1",
+            content: "barack1",
+            image: "barack1",
+            shortContent: "barack1",
+            journalists: [],
+            comments: []
+        },
+        {
+            title: "alma2",
+            subtitle: "korte2",
+            content: "barack2",
+            image: "barack2",
+            shortContent: "barack2",
+            journalists: [],
+            comments: []
+        },
+    ])
     const response = await fetch("https://epic-weevil-67.hasura.app/v1/graphql", {
         method: "POST",
         headers: {
