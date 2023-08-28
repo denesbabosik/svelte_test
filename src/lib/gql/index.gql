@@ -1,0 +1,70 @@
+query GetJournalist($name: String!) {
+  journalist(where: { name: { _eq: $name } }) {
+    id
+    name
+    password
+  }
+}
+
+query GetArticlesWithComments {
+  article {
+    id
+    image
+    content
+    title
+    subtitle
+    created_at
+    journalists {
+      journalist {
+        name
+      }
+    }
+    comments {
+      content
+      created_at
+      likes
+      user {
+        username
+      }
+    }
+  }
+}
+
+mutation addArticle(
+  $title: String = ""
+  $subtitle: String = ""
+  $content: String = ""
+  $image: String = ""
+  $short_content: String = ""
+) {
+  insert_article(
+    objects: {
+      title: $title
+      subtitle: $subtitle
+      content: $content
+      image: $image
+      short_content: $short_content
+    }
+  )
+}
+
+mutation DeleteArticle($id: Int!) {
+  delete_article(where: {id: {_eq: $id}}) {
+    returning {
+      id
+    }
+  }
+}
+
+mutation updateArticle($id: Int!, $title: String, $subtitle: String, $content: String, $image: String, $short_content: String) {
+  update_article(where: {id: {_eq: $id}}, _set: {title: $title, subtitle: $subtitle, content: $content, image: $image, short_content: $short_content}) {
+    returning {
+      id
+      title
+      subtitle
+      content
+      short_content
+      image
+    }
+  }
+}
